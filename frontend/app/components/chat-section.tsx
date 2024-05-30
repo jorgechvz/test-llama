@@ -19,13 +19,8 @@ export default function ChatSection() {
     },
     onError: (error: unknown) => {
       if (!(error instanceof Error)) throw error;
-      try {
-        const message = JSON.parse(error.message);
-        alert(message.detail);
-      } catch (e) {
-        console.error('Error parsing JSON:', e);
-        alert(error.message);
-      }
+      const message = JSON.parse(error.message);
+      alert(message.detail);
     },
   });
 
