@@ -8,23 +8,9 @@ from app.engine import get_chat_engine
 from app.api.routers.vercel_response import VercelStreamResponse
 from app.api.routers.messaging import EventCallbackHandler
 from aiostream import stream
-# Add libraries
-from fastapi import FastAPI, APIRouter, Depends, HTTPException, Request, status
-from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-import os
 
 chat_router = r = APIRouter()
-allowed_origins = os.getenv("ALLOWED_ORIGINS").split(",")
 
-# Add Cors
-r.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,  # Replace with the origin you want to allow
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 class _Message(BaseModel):
     role: MessageRole
